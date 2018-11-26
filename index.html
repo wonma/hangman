@@ -5,20 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hangman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="images/favicon.png">
 </head>
 <body>
-    <h1>Hangman Game</h1>
-    <div id="puzzle-box">
-        <p>Guess the Word!</p>
-        <span id="puzzle"></span>
-        <span id="guess-num"></span>
-        <button id="new-word">New Word</button>
+    <div>
+        <h1>Hangman Game</h1>
+        <p class="explanation">Use your keyboard</p>
+        <div id="puzzle" class="puzzle"></div>
+        <p id="guess-num"></p>
+        <button id="new-word" class="button">New Word</button>
     </div>
 
-    <script src="requests.js"></script>
-    <script src="hangman_class.js"></script>
-    <script src="app.js"></script>
+    <script src="scripts/requests.js"></script>
+    <script src="scripts/hangman_class.js"></script>
+    <script src="scripts/app.js"></script>
 
 </body>
 </html>

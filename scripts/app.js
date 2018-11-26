@@ -4,14 +4,30 @@ const newWordBtn = document.querySelector('#new-word')
 // let firstQuiz = new Hangman("cat toy", 3)
 let firstQuiz
 
+// span 더하기 전
+// const displayQuiz = () => {
+//     puzzleEl.textContent = firstQuiz.puzzle
+//     guessNumEl.textContent = firstQuiz.message
+// }
+
+// span 더하고 난 후
 const displayQuiz = () => {
-    puzzleEl.textContent = firstQuiz.puzzle
+    puzzleEl.innerHTML = ''
     guessNumEl.textContent = firstQuiz.message
+    
+
+    firstQuiz.puzzle.split('').forEach(element => {
+        const spanEl = document.createElement('span')
+        spanEl.textContent = element
+        puzzleEl.appendChild(spanEl)
+    });
+    // firstQuiz.puzzle 의 각 알파벳이 span태그 달고 나오게 하기..
+
 }
 
 const startQuiz = async() => {
     const theWord = await getPuzzle(1)
-    firstQuiz = new Hangman(theWord, 3)
+    firstQuiz = new Hangman(theWord, 10)
 
     // Display puzzle and guessNum
     displayQuiz()

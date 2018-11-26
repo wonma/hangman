@@ -3,7 +3,7 @@
 // Request 1 (using async function)
 
 const getPuzzle = async (wordLength) => {
-    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordLength}`, {})
+    const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordLength}`, {})
     if (response.status === 200) {
         const data = await response.json()  // Error here! await해줘야 다음 라인이 차분히 기다림!
         return data.puzzle
@@ -16,7 +16,7 @@ const getPuzzle = async (wordLength) => {
 // Request 2 (using async function)
 
 const getCountryName = async (countryCode) => {
-    const response = await fetch('https://restcountries.eu/rest/v2/all', {})
+    const response = await fetch('//restcountries.eu/rest/v2/all', {})
     if (response.status === 200) {
         const countries = await response.json()
         return countries.find((country) => country.alpha2Code === countryCode)    
@@ -29,7 +29,7 @@ const getCountryName = async (countryCode) => {
 // Request 3   
 
 const getLocation = async () => {
-    const response = await fetch(`http://ipinfo.io/json?token=b49a667be0d6c1`, {})
+    const response = await fetch(`//ipinfo.io/json?token=b49a667be0d6c1`, {})
     if (response.status === 200) {
         return response.json()
     } else {

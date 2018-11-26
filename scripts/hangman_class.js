@@ -52,7 +52,6 @@ class Hangman {
                 return output = output + '*'
             }
         })
-
         return output
     }
     
