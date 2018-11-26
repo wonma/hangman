@@ -1,13 +1,34 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessNumEl = document.querySelector('#guess-num')
-const firstQuiz = new Hangman('cat toy', 3)
-const secondQuiz = new Hangman('cocacola', 3)
+const newWordBtn = document.querySelector('#new-word')
+// let firstQuiz = new Hangman("cat toy", 3)
+let firstQuiz
+
+const displayQuiz = () => {
+    puzzleEl.textContent = firstQuiz.puzzle
+    guessNumEl.textContent = firstQuiz.message
+}
+
+const startQuiz = async() => {
+    const theWord = await getPuzzle(1)
+    firstQuiz = new Hangman(theWord, 3)
+
+    // Display puzzle and guessNum
+    displayQuiz()
+}
+
+startQuiz()
+
+// 이건 너무 중복적이야
+// newWordBtn.addEventListener('click', async ()=>{
+//     firstQuiz = await getNewWord()
+//     puzzleEl.textContent = firstQuiz.puzzle
+//     guessNumEl.textContent = firstQuiz.message
+// })
+
+newWordBtn.addEventListener('click', startQuiz)
 
 
-// Display puzzle and guessNum
-
-puzzleEl.textContent = firstQuiz.puzzle
-guessNumEl.textContent = firstQuiz.message
 
 // keypress event
 window.addEventListener('keypress', (e) => {
@@ -17,8 +38,7 @@ window.addEventListener('keypress', (e) => {
     // firstQuiz.letter값에 접근할 일이 없으면 굳이 setter로 코딩할 이유가 없음
     // method는 지금처럼 method스럽게 남겨둘 필요도 있음. (value를 fetch할 게 아니라면)
 
-    puzzleEl.textContent = firstQuiz.puzzle
-    guessNumEl.textContent = firstQuiz.message
+    displayQuiz()
 })
 
 
@@ -115,14 +135,13 @@ getCountryName('US').then((country)=>{
 // getLocation           // API info from  https://ipinfo.io
 
 // My version
-// getLocation().then((infoObj)=>{
-//     getCountryName(infoObj.country).then((country) => {
-//         const countryName = country.name
-//         console.log(`Your country is ${countryName} and you live in ${infoObj.region}`)
-//     })
-// }).catch((error) => {
-//     console.log(error)
-// })
+getLocation().then((infoObj)=>{
+    getCountryName(infoObj.country).then((country) => {
+        console.log(`Your country is ${country.name} and you live in ${infoObj.region}`)
+    })
+}).catch((error) => {
+    console.log(error)
+})
 
 // getLocation().then((infoObj) => {
 //     getCountryName(infoObj.country).then((country) => {
@@ -134,15 +153,14 @@ getCountryName('US').then((country)=>{
 //     console.log(error)
 // })
 
-getLocation().then((infoObj) => {
-    const countryName = getCountryName(infoObj.country).then((country) => {
-        return country.name
-    })
-    debugger
-    console.log(`Your country is ${countryName} and you live in ${infoObj.region}`)
-}).catch((error) => {
-    console.log(error)
-})
+// getLocation().then((infoObj) => {
+//     const countryName = getCountryName(infoObj.country).then((country) => {
+//         return country.name
+//     })
+//     console.log(`Your country is ${countryName} and you live in ${infoObj.region}`)
+// }).catch((error) => {
+//     console.log(error)
+// })
 
 // Teacher's version
 // getLocation().then((infoObj) => {
@@ -152,3 +170,14 @@ getLocation().then((infoObj) => {
 // }).catch((error) => {
 //     console.log(error)
 // })
+
+
+
+
+// Mission D
+
+getCurrentCountry().then((country) => {
+    console.log('Answer: ' + country.name)
+}).catch((error) => {
+    console.log(error)
+})
