@@ -1,6 +1,7 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessNumEl = document.querySelector('#guess-num')
 const newWordBtn = document.querySelector('#new-word')
+const keypadInput = document.querySelector('#keypadActivator')
 // let firstQuiz = new Hangman("cat toy", 3)
 let firstQuiz
 
@@ -42,7 +43,10 @@ startQuiz()
 //     guessNumEl.textContent = firstQuiz.message
 // })
 
-newWordBtn.addEventListener('click', startQuiz)
+newWordBtn.addEventListener('click', () => {
+    startQuiz()
+    keypadInput.value = ''
+})
 
 
 
